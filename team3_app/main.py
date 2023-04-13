@@ -20,7 +20,7 @@ async def root():
 
 
 @app.get("/update")
-def update_location(address: str = "700 E 7th St, St Paul, MN 55106"):
+def update_location(address: str = "700 E 7th St, St Paul, MN 55106") -> UpdateResponse:
     tract = get_census_tract(address)
     demographics = get_demographics(tract)
     auction_id = start_auction(demographics)

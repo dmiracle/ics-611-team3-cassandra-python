@@ -7,7 +7,10 @@ auth_provider = PlainTextAuthProvider(
     os.getenv("DATASTAX_CLIENT_ID"), os.getenv("DATASTAX_CLIENT_SECRET")
 )
 cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
-session = cluster.connect("team3")
+try:
+    session = cluster.connect("team3")
+except Exception as e:
+    print(e)
 
 row = session.execute("select release_version from system.local").one()
 if row:
